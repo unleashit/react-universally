@@ -3,7 +3,7 @@ import openBrowser from 'react-dev-utils/openBrowser';
 import chokidar from 'chokidar';
 import { resolve as pathResolve } from 'path';
 import appRootDir from 'app-root-dir';
-import config from '../../config/values';
+import config from '../../config';
 import { log } from '../utils';
 
 let HotDevelopment = require('./hotDevelopment').default;
