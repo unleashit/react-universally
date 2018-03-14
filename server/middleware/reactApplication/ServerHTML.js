@@ -45,7 +45,7 @@ function scriptTag(jsFilePath) {
 // COMPONENT
 
 function ServerHTML(props) {
-  const { asyncComponentsState, helmet, nonce, reactAppString } = props;
+  const { asyncComponentsState, helmet, nonce, children } = props;
 
   // Creates an inline script definition that is protected by the nonce.
   const inlineScript = body => (
@@ -124,8 +124,9 @@ function ServerHTML(props) {
       bodyElements={bodyElements.map((x, idx) => (
         <KeyedComponent key={idx}>{x}</KeyedComponent>
       ))}
-      appBodyString={reactAppString}
-    />
+    >
+      <div id="app">{children}</div>
+    </HTML>
   );
 }
 
@@ -137,12 +138,12 @@ ServerHTML.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   helmet: PropTypes.object,
   nonce: PropTypes.string,
-  reactAppString: PropTypes.string,
+  children: PropTypes.object,
 };
 
 ServerHTML.defaultProps = {
   asyncComponentsState: undefined,
   helmet: undefined,
   nonce: undefined,
-  reactAppString: undefined,
+  children: undefined,
 };

@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
  * The is the HTML shell for our React Application.
  */
 function HTML(props) {
-  const { htmlAttributes, headerElements, bodyElements, appBodyString } = props;
+  const { htmlAttributes, headerElements, bodyElements, children } = props;
 
   return (
     <html {...htmlAttributes}>
       <head>{headerElements}</head>
       <body>
-        <div id="app" dangerouslySetInnerHTML={{ __html: appBodyString }} />
+        {children}
         {bodyElements}
       </body>
     </html>
@@ -26,14 +26,14 @@ HTML.propTypes = {
   htmlAttributes: PropTypes.object,
   headerElements: PropTypes.node,
   bodyElements: PropTypes.node,
-  appBodyString: PropTypes.string,
+  children: PropTypes.object,
 };
 
 HTML.defaultProps = {
   htmlAttributes: null,
   headerElements: null,
   bodyElements: null,
-  appBodyString: '',
+  children: undefined,
 };
 
 // EXPORT

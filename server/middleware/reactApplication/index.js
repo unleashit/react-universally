@@ -1,10 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import {
-  renderToString,
-  renderToStaticMarkup,
-  renderToNodeStream,
-} from 'react-dom/server';
+import { renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import {
   AsyncComponentProvider,
@@ -62,19 +58,21 @@ export default function reactApplicationMiddleware(request, response) {
     </AsyncComponentProvider>
   );
 
+  const App = () => app;
+
   // Pass our app into the react-async-component helper so that any async
   // components are resolved for the render.
   asyncBootstrapper(app).then(() => {
-    const appString = renderToString(app);
-
     // Generate the html response.
     const html = renderToNodeStream(
       <ServerHTML
-        reactAppString={appString}
+        // reactAppString={appString}
         nonce={nonce}
         helmet={Helmet.rewind()}
         asyncComponentsState={asyncComponentsContext.getState()}
-      />,
+      >
+        <App />
+      </ServerHTML>,
     );
 
     switch (reactRouterContext.status) {
