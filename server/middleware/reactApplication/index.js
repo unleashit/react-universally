@@ -50,7 +50,7 @@ export default function reactApplicationMiddleware(request, response) {
   const reactRouterContext = {};
 
   // Declare our React application.
-  const app = (
+  const App = () => (
     <AsyncComponentProvider asyncContext={asyncComponentsContext}>
       <StaticRouter location={request.url} context={reactRouterContext}>
         <DemoApp />
@@ -60,9 +60,7 @@ export default function reactApplicationMiddleware(request, response) {
 
   // Pass our app into the react-async-component helper so that any async
   // components are resolved for the render.
-  asyncBootstrapper(app).then(() => {
-    const ResolvedApp = () => app;
-
+  asyncBootstrapper(App()).then(() => {
     // Generate the html response.
     const html = renderToNodeStream(
       <ServerHTML
@@ -70,7 +68,7 @@ export default function reactApplicationMiddleware(request, response) {
         helmet={Helmet.rewind()}
         asyncComponentsState={asyncComponentsContext.getState()}
       >
-        <ResolvedApp />
+        <App />
       </ServerHTML>,
     );
 
