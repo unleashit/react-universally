@@ -14,7 +14,7 @@ function HTML(props) {
     <html {...htmlAttributes}>
       <head>{headerElements}</head>
       <body>
-        {children}
+        <div id="app">{children}</div>
         {bodyElements}
       </body>
     </html>
@@ -26,14 +26,14 @@ HTML.propTypes = {
   htmlAttributes: PropTypes.object,
   headerElements: PropTypes.node,
   bodyElements: PropTypes.node,
-  children: PropTypes.object,
+  children: PropTypes.node,
 };
 
 HTML.defaultProps = {
   htmlAttributes: null,
   headerElements: null,
   bodyElements: null,
-  children: undefined,
+  children: null,
 };
 
 // EXPORT

@@ -58,20 +58,19 @@ export default function reactApplicationMiddleware(request, response) {
     </AsyncComponentProvider>
   );
 
-  const App = () => app;
-
   // Pass our app into the react-async-component helper so that any async
   // components are resolved for the render.
   asyncBootstrapper(app).then(() => {
+    const ResolvedApp = () => app;
+
     // Generate the html response.
     const html = renderToNodeStream(
       <ServerHTML
-        // reactAppString={appString}
         nonce={nonce}
         helmet={Helmet.rewind()}
         asyncComponentsState={asyncComponentsContext.getState()}
       >
-        <App />
+        <ResolvedApp />
       </ServerHTML>,
     );
 

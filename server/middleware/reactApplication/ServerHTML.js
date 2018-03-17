@@ -125,7 +125,7 @@ function ServerHTML(props) {
         <KeyedComponent key={idx}>{x}</KeyedComponent>
       ))}
     >
-      <div id="app">{children}</div>
+      {children}
     </HTML>
   );
 }
@@ -138,12 +138,12 @@ ServerHTML.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   helmet: PropTypes.object,
   nonce: PropTypes.string,
-  children: PropTypes.object,
+  children: PropTypes.node,
 };
 
 ServerHTML.defaultProps = {
   asyncComponentsState: undefined,
   helmet: undefined,
   nonce: undefined,
-  children: undefined,
+  children: null,
 };
