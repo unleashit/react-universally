@@ -2,14 +2,14 @@
 
 exports[`<HomeRoute /> renders 1`] = `
 <div>
-  <HelmetWrapper
+  <Helmet
     defer={true}
     encodeSpecialCharacters={true}
   >
     <title>
       Home
     </title>
-  </HelmetWrapper>
+  </Helmet>
   <h2>
     Hello world!
   </h2>
