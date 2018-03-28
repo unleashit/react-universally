@@ -75,7 +75,7 @@
     "react-async-bootstrapper": "2.1.0",
     "react-async-component": "2.0.0",
     "react-dom": "16.2.0",
-    "react-helmet": "5.2.0",
+    "react-helmet-async": "0.0.5",
     "react-hot-loader": "4.0.0",
     "react-router-dom": "4.2.2",
     "react-tree-walker": "4.0.2",

@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { HelmetProvider } from 'react-helmet-async';
 import { renderToStaticMarkup, renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import {
@@ -49,11 +49,16 @@ export default function reactApplicationMiddleware(request, response) {
   // query for the results of the render.
   const reactRouterContext = {};
 
+  // Holds Helmet state specific to each request
+  const helmetContext = {};
+
   // Declare our React application.
   const App = () => (
     <AsyncComponentProvider asyncContext={asyncComponentsContext}>
       <StaticRouter location={request.url} context={reactRouterContext}>
-        <DemoApp />
+        <HelmetProvider context={helmetContext}>
+          <DemoApp />
+        </HelmetProvider>
       </StaticRouter>
     </AsyncComponentProvider>
   );
@@ -65,7 +70,7 @@ export default function reactApplicationMiddleware(request, response) {
     const html = renderToNodeStream(
       <ServerHTML
         nonce={nonce}
-        helmet={Helmet.rewind()}
+        helmet={helmetContext.helmet}
         asyncComponentsState={asyncComponentsContext.getState()}
       >
         <App />

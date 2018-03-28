@@ -3,7 +3,7 @@ import 'normalize.css/normalize.css';
 import React from 'react';
 import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
-import Helmet from 'react-helmet';
+import Helmet from 'react-helmet-async';
 
 import config from '../../../config';
 

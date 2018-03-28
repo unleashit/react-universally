@@ -6,6 +6,7 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import asyncBootstrapper from 'react-async-bootstrapper';
 import { AppContainer as ReactHotLoader } from 'react-hot-loader';
 import { AsyncComponentProvider } from 'react-async-component';
+import { HelmetProvider } from 'react-helmet-async';
 
 import './polyfills';
 
@@ -33,7 +34,9 @@ function renderApp(TheApp) {
     <ReactHotLoader>
       <AsyncComponentProvider rehydrateState={asyncComponentsRehydrateState}>
         <BrowserRouter forceRefresh={!supportsHistory}>
-          <TheApp />
+          <HelmetProvider>
+            <TheApp />
+          </HelmetProvider>
         </BrowserRouter>
       </AsyncComponentProvider>
     </ReactHotLoader>

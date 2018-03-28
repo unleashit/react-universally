@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
+import Helmet from 'react-helmet-async';
 
 class CounterRoute extends Component {
   constructor(props) {
