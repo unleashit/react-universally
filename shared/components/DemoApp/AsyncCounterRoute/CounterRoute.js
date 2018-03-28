@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 
 class CounterRoute extends Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class CounterRoute extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>Counter</title>
+        </Helmet>
         <h3>Counter</h3>
         <p>
           <em>
